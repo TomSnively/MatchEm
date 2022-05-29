@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/MatchEm.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.bricksimple.matchem</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0.0</string>
+		<key>CFBundleVersion</key>
+		<string>1.0.0</string>
+		<key>SigningIdentity</key>
+		<string>Apple Development: tsnively@bricksimple.com (2R4259DPDT)</string>
+		<key>Team</key>
+		<string>PZNL6KYBD3</string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<integer>2</integer>
+	<key>CreationDate</key>
+	<date>2020-08-04T16:11:45Z</date>
+	<key>Name</key>
+	<string>MatchEm</string>
+	<key>SchemeName</key>
+	<string>MatchEm</string>
+</dict>
+</plist>
