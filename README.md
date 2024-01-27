@@ -6,7 +6,7 @@ You can see information about the game at https://tomsnively.com/html/matchem.ht
 
 ## History
 
-Match Em was written in Unity around 2015. A Windows, Mac, Linum and WebGL (non-mobile browser) versions are available to download/play at https://tomsnively.com/html/matchem.html.
+Match Em was written in Unity around 2015. A Windows, Mac, Linux and WebGL (non-mobile browser) versions are available to download/play at https://tomsnively.com/html/matchem.html.
 
 In 2020, Tom Snively re-wrote Match Em using React for all browsers.
 In 2022, Tom Snively moved this to GitHub for the possibility of other open source contributors.
@@ -21,11 +21,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, after installing, you can run:
 
+### `set NODE_OPTIONS=--openssl-legacy-provider`
 ### `yarn start`
 
-Runs the app in the development mode.<br />
+This runs the app in the development mode. The set NODE_OPTIONS line may be necessary depending on the node version; there may be something that can be upgraded to avoid needing this.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
