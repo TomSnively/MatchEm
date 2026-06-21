@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
@@ -165,7 +171,7 @@ const ThirtySecondRush = ({ windowSize }) => {
   const location = useLocation();
   const history = useHistory();
   const timeout = 1000;
-  let timerInterval;
+  const timerInterval = useRef(null);
   const [firstLoad, setFirstLoad] = useState(true);
   const [running, setRunning] = useState(false);
   const [pics, setPics] = useState(false);
@@ -185,19 +191,20 @@ const ThirtySecondRush = ({ windowSize }) => {
   const [finalPauseStarted, setFinalPauseStarted] = useState(false);
   const rowLength = 8;
 
-  const resetSquareOn = Array.from(
+  const resetSquareOn = useMemo(() => Array.from(
     { length: 2 },
     () => Array.from({ length: rowLength }, () => false),
-  );
+  ), [rowLength]);
   const [squareOn, setSquareOn] = useState(resetSquareOn);
   const [redSquareOn, setRedSquareOn] = useState(resetSquareOn);
 
-  const showCorrectMatch = () => {
-    const newSquareOn = [...squareOn];
+  const showCorrectMatch = useCallback(() => {
+    const newSquareOn = resetSquareOn.map((row) => [...row]);
     newSquareOn[0][matchCorrect[0]] = true;
     newSquareOn[1][matchCorrect[1]] = true;
+    setSquareOn(newSquareOn);
     setRedSquareOn(resetSquareOn);
-  };
+  }, [matchCorrect, resetSquareOn]);
 
   const handleToggleMusic = () => {
     mathEmMusic.volume = musicOn ? 0 : 1;
@@ -250,7 +257,7 @@ const ThirtySecondRush = ({ windowSize }) => {
       }
 
       if (timeToEnd - timerStarted < 0) {
-        clearInterval(timerInterval);
+        clearInterval(timerInterval.current);
 
         setClickable(false);
         showCorrectMatch();
@@ -283,15 +290,16 @@ const ThirtySecondRush = ({ windowSize }) => {
     words,
     warningPlayed,
     finalPauseStarted,
+    showCorrectMatch,
   ]);
 
   useEffect(() => {
     if (running) {
-      timerInterval = setInterval(() => {
+      timerInterval.current = setInterval(() => {
         const now = new Date().getTime();
         setTimerStarted((now));
       }, 50);
-      return () => clearInterval(timerInterval);
+      return () => clearInterval(timerInterval.current);
     }
     return () => {};
   }, [running]);
